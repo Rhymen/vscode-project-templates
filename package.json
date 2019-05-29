@@ -22,7 +22,8 @@
         "onCommand:extension.openTemplatesFolder",
         "onCommand:extension.saveProjectAsTemplate",
         "onCommand:extension.deleteTemplate",
-        "onCommand:extension.createProjectFromTemplate"
+        "onCommand:extension.createProjectFromTemplate",
+        "onCommand:extension.createProjectFromGithubTemplate"
     ],
     "main": "./out/extension",
     "contributes": {
@@ -80,12 +81,22 @@
                 "command": "extension.createProjectFromTemplate",
                 "title": "Create Project from Template",
                 "category": "Project"
+            },
+            {
+                "command": "extension.createProjectFromGithubTemplate",
+                "title": "Create Project from Github Template",
+                "category": "Project"
             }
         ],
         "menus": {
             "explorer/context": [
                 {
                     "command": "extension.createProjectFromTemplate",
+                    "when": "explorerResourceIsFolder",
+                    "group": "projectTemplates@1"
+                },
+                {
+                    "command": "extension.createProjectFromGithubTemplate",
                     "when": "explorerResourceIsFolder",
                     "group": "projectTemplates@1"
                 },

@@ -12,6 +12,7 @@ import OpenTemplatesFolderCommand = require('./commands/openTemplatesFolderComma
 import SaveProjectAsTemplateCommand = require('./commands/saveProjectAsTemplateCommand');
 import DeleteTemplateCommand = require('./commands/deleteTemplateCommand');
 import CreateProjectFromTemplateCommand = require('./commands/createProjectFromTemplateCommand');
+import CreateProjectFromGithubTemplateCommand = require('./commands/createProjectFromGithubTemplateCommand');
 
 /**
  * Main entry point for extension
@@ -45,6 +46,11 @@ export function activate(context: vscode.ExtensionContext) {
     let createProjectFromTemplate = vscode.commands.registerCommand('extension.createProjectFromTemplate',
         CreateProjectFromTemplateCommand.run.bind(undefined, projectTemplatesPlugin));
     context.subscriptions.push(createProjectFromTemplate);
+
+    // create project from github template
+    let createProjectFromGithubTemplate = vscode.commands.registerCommand('extension.createProjectFromGithubTemplate',
+    CreateProjectFromGithubTemplateCommand.run.bind(undefined, projectTemplatesPlugin));
+    context.subscriptions.push(createProjectFromGithubTemplate);
 
 }
 
