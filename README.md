@@ -1,22 +1,19 @@
 
 # Project Templates VSCode Extension
 
-[Visual Studio code](https://code.visualstudio.com) extension that allows you to quickly create new projects based on custom templates. 
+[Visual Studio code](https://code.visualstudio.com) extension that allows you to quickly create new projects based on custom templates stored in git. 
 
+Original Work by [cantonios](https://github.com/cantonios/vscode-project-templates).
 Inspired by [this File Templates Extension](https://github.com/brpaz/vscode-file-templates-ext), which is itself inspired by [a similar Atom Extension](https://atom.io/packages/file-templates).
 
 ## Features
 
-* Create a new project from a template directory
-* Save the current project as a template directory
+* Create a new project from a template
 * Use customizable placeholders for easy interactive configuration
-
-
-![demo](https://raw.githubusercontent.com/cantonios/vscode-project-templates/master/images/demofast.gif)
 
 ## Install
 
-In Visual Studio code, Press F1 to open the command menu and type ```ext install cantonios.project-templates```.
+In Visual Studio code, Press F1 to open the command menu and type ```ext install rhymen.project-git-templates```.
 
 ## Extension Settings
 
@@ -24,11 +21,10 @@ This extension contributes the following settings:
 
 ```ts
 {
-  "projectTemplates.templatesDirectory": "",          // default directory containing project templates
   "projectTemplates.usePlaceholders": true,           // activate placeholder substitution
   "projectTemplates.placeholders": {  },              // dictionary of default placeholder key-value pairs
   "projectTemplates.placeholderRegExp": "#{(\\w+?)}", // regular expression to use for detecting placeholders
-  "projectTemplates.gitDirectory": ""                 // default directory containing git project templates
+  "projectTemplates.gitDirectory": ""                 // default directory containing git project templates (for caching)
   "projectTemplates.gitRepositories": []              // array of all git repository urls
   "projectTemplates.gitPrefix": "Git:"                // prefix for git repository names in picker
 }
@@ -37,11 +33,6 @@ This extension contributes the following settings:
 ## Known Issues
 
 * None
-
-## Release Notes
-
-See [CHANGELOG](https://github.com/cantonios/vscode-project-templates/tree/master/CHANGELOG.md) for release notes.
-
 
 ## Usage
 
@@ -54,11 +45,6 @@ Extension commands can be executed from the Command Palette or from the context 
 
 * In VSCode, open a folder that will contain your new project.  Use the Command Palette to execute the command "Project: Create Project From Template".  A list of available templates should appear. Select the desired template.  The contents of the template will be copied to the current root workspace directory.
 * If called from the context menu, the contents of the template will instead be copied to the selected folder.
-
-### Saving a Project as a Template
-
-* Create the desired template project in your current root workspace directory.  Use the Command Palette to execute the command "Project: Save Project As Template".  Enter the name for your template.  The contents of your root workspace directory will be copied to a new template folder.
-* If called from the context menu, the contents of the selected folder will be copied to the new template folder.
 
 ## Placeholders
 
@@ -88,26 +74,6 @@ When a file is created from a template containing placeholders, the user is prom
   }
   ```
   These placeholders will be replaced without prompting.
-
-## Templates Location
-
-By default, this extension expects the project templates to be placed within the user's data directory for VSCode, which is OS-specific.  For the non-portable version of VSCode, this is typically
-```
-$HOME/.config/Code/User/ProjectTemplates                       # Linux
-$HOME/Library/Application Support/Code/User/ProjectTemplates   # macOS
-%APPDATA%\Code\User\ProjectTemplates                           # Windows
-```
-For the portable version of vscode, or if a `--user-data-dir` is specified at the command-line, the default template location is
-```
-$USER_DATA_DIR/User/ProjectTemplates
-```
-
-You can change the templates location by adding the following to your user or workspace settings:
-
-```
-"projectTemplates.templatesDirectory": "path/to/my/templates"
-```
-This path supports VSCode's predefined variables, such as `${env:HOME}`.
 
 ### Samples
 
